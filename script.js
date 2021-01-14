@@ -1,3 +1,4 @@
+// store list of music in an array of dictionary
 var musicList = [
     {artist:"Adele",
     title: "sound 1",
@@ -19,6 +20,8 @@ var musicList = [
     image: "https://png.pngtree.com/thumb_back/fh260/back_our/20190622/ourmid/pngtree-hip-hop-music-background-illustration-education-training-music-carnival-image_208997.jpg",
     file: "music/sound4.wav",
     type: "audio/wav"}]
+
+// create variables of all elements used in javascript
 var button = document.querySelectorAll("button")
 var play = button[1]
 var pause = button[2]
@@ -33,7 +36,7 @@ var artist = document.querySelector(".artist")
 pause.hidden = true
 
 
-
+// Render music list to html using innerHTML
 for(n in musicList){
     li.innerHTML += `<div class="song">
         <div class="thumbnail">
@@ -54,7 +57,7 @@ for(n in musicList){
 }
 
 
-
+// create more variables and use Array.from to change node list to array list
 var song = document.querySelectorAll(".song")
 var stage = document.querySelectorAll(".stage")
 var stages = Array.from(stage)
@@ -63,7 +66,7 @@ var selected = document.querySelectorAll(".ms_title")
 
 
 
-
+// add event listener on click to all buttons
 for(n=0;n<song.length;n++){
     song[n].addEventListener("click",Button)
 }
@@ -71,6 +74,7 @@ for(n=0;n<button.length;n++){
     button[n].addEventListener("click",Button);
 }
 
+// function button to check button classes with actions 
 function Button(){
     if(this.className == "play"){ 
         this.hidden = true;
@@ -98,34 +102,39 @@ function Button(){
         stop();
     }
     else if(this.className=="previous"){
-        stages[songIndex].setAttribute("style","display: none;")
+        stages[songIndex].setAttribute("style","display: none;");
         pause.hidden = false;
         play.hidden = true;
         previous();           
     }
+    // this is to play song when click and choose song from play list or track
     else{        
         play.hidden = true;
         pause.hidden = false;
-        stages[songIndex].setAttribute("style","display: none;")
-        var Index = Array.from(song).indexOf(this)
-        songIndex=Index
+        stages[songIndex].setAttribute("style","display: none;");
+        var Index = Array.from(song).indexOf(this);
+        songIndex=Index;
         audio.setAttribute("src",musicList[songIndex]["file"]);
         source.setAttribute("type",musicList[songIndex]["type"]);
         title.innerText = musicList[songIndex]["title"];
-        artist.innerText = musicList[songIndex]["artist"]
+        artist.innerText = musicList[songIndex]["artist"];
         audio.play();
     }
 }
+
+// play fuction will check the cover image and display playing stage of music
 audio.addEventListener("play",function(){
     control.setAttribute("style","background:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(" + musicList[songIndex]["image"]+ "); background-size: 100% 100%")
     selected[songIndex].setAttribute("style", "font-style: italic;")
+    // if else statement to not display song stage when screen is less than 250px
     if(screen.width > 250){
         stages[songIndex].setAttribute("style","display: inline;");        
     }
     else{
-        stages[songIndex].setAttribute("style","display: none;")
+        stages[songIndex].setAttribute("style","display: none;");
     }
 })
+// add event listener to audio when it ends and call next();.
 audio.addEventListener("ended",function(){
     selected[songIndex].setAttribute("style", "font-style: none;")
     stages[songIndex].setAttribute("style","display: none;")
@@ -136,6 +145,7 @@ function stop(){
     audio.load();
 }
 
+// this function will play the next music.
 function next(){
     songIndex ++;
     if(songIndex==musicList.length){
@@ -147,7 +157,7 @@ function next(){
     source.setAttribute("type",musicList[songIndex]["type"]);
     audio.play();
 }
-
+// this function will play the previous music.
 function previous(){
     songIndex --;
     if(songIndex<0){
@@ -160,6 +170,7 @@ function previous(){
     audio.play();
 }
 
+// add event listener to timeupdate and display current time on html using innerHTML
 audio.addEventListener('timeupdate', (event) => {
     var curTime = (audio.currentTime);
     var time = Math.floor((curTime)/60);
