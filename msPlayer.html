@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap">
+    <title>Music Player</title>
+</head>
+<body>   
+    <div class="container">
+        <div class="control">
+            <div class="title-time">
+                <!-- info of default song -->
+                <h2>Hello</h2>
+                <h4 class="artist">Adele</h4>
+                <h4 class="time">0:00</h4>
+            </div>
+            <div class="player-controls">
+                <button class="previous"><i class="material-icons md-light">skip_previous</i></button>
+                <button class="play"><i class="material-icons md-light">play_arrow</i></button>
+                <button class="pause"><i class="material-icons md-light">pause</i></button>
+                <button class="stop"><i class="material-icons md-light">stop</i></button>
+                <button class="next"><i class="material-icons md-light">skip_next</i></button>
+            </div>
+            <audio src="music/sound1.mp3">
+                <source type="">
+            </audio>
+        </div>
+        <div class="music-list">
+        </div>     
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
